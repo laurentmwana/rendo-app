@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Grade;
 use App\Models\Service;
 use App\Models\Category;
 use App\Enums\RoleUserEnum;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 
 function isAdmin(string $role): bool
 {
@@ -16,18 +18,20 @@ function isAdmin(string $role): bool
  */
 function isPremium(string $role): bool
 {
-    return $role === RoleUserEnum::ROLE_PREMIUM->value;
+    return $role === RoleUserEnum::ROLE_SECRETARY->value;
 }
 
 
-
-function getService(int $limit = 4, array $columns = ['id', 'name']): Collection
+function getSexies(): array
 {
-    return Service::limit($limit)->get($columns);
+    return [
+        'M' => 'Homme',
+        'F' => 'Femme',
+    ];
 }
 
-function getPluckCategories(): \Illuminate\Support\Collection
+function getGrades(): SupportCollection
 {
-    return Category::orderByDesc('updated_at')
+    return Grade::orderByDesc('updated_at')
         ->pluck('name', 'id');
 }

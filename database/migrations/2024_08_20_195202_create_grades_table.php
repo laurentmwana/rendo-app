@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hourlies', function (Blueprint $table) {
+        Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('day')->unique();
-            $table->time('start')->nullable();
-            $table->time('end')->nullable();
-            $table->boolean('lock')->default(true);
+            $table->string('name')->unique();
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hourlies');
+        Schema::dropIfExists('grades');
     }
 };

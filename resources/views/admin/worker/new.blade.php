@@ -1,14 +1,14 @@
-<x-admin-layout title="Editer l'utilisateur #{{ $user->id }}">
+<x-admin-layout title="Ajouter un travailleur">
     <x-container class="py-12">
         <x-header-page :admin="true" class="mb-4">
             <x-slot name="title" class="text-base">
-                Editer l'utilisateur #{{ $user->id }}
+                Ajouter un travailleur
             </x-slot>
         </x-header-page>
 
         <x-card class="max-w-lg">
-            @include('admin.user._form', [
-            'user' => $user
+            @include('admin.worker._form', [
+            'worker' => $worker
             ])
         </x-card>
     </x-container>

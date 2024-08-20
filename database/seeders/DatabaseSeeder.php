@@ -22,13 +22,11 @@ class DatabaseSeeder extends Seeder
 
 
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'role' => RoleUserEnum::ROLE_ADMIN->value,
-        // ]);
-
-
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'role' => RoleUserEnum::ROLE_ADMIN->value,
+        ]);
 
         Hourly::factory()->createMany([
             ['day' => 'Lundi', 'start' => '08:30', 'end' => '16:30'],
@@ -36,6 +34,8 @@ class DatabaseSeeder extends Seeder
             ['day' => 'Mercredi', 'start' => '08:30', 'end' => '16:30'],
             ['day' => 'Jeudi', 'start' => '08:30', 'end' => '16:30'],
             ['day' => 'Vendredi', 'start' => '08:30', 'end' => '13:30'],
+            ['day' => 'Samedi', 'start' => null, 'end' => null, 'lock' => false],
+            ['day' => 'Dimanche', 'start' => null, 'end' => null, 'lock' => false],
         ]);
     }
 }

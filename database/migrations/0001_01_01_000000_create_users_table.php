@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->unique();
             $table->enum('role', array_map(fn($role) => $role->value, RoleUserEnum::cases()))
-                ->default(RoleUserEnum::ROLE_BASIC->value);
+                ->default(RoleUserEnum::ROLE_SECRETARY->value);
             $table->rememberToken();
             $table->timestamps();
         });

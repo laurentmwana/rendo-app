@@ -7,7 +7,7 @@ use App\Enums\RoleUserEnum;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GrantAccessBasic
+class GrantAccessSecretary
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,9 @@ class GrantAccessBasic
     {
         $user = $request->user();
 
-        if ($user->role !== RoleUserEnum::ROLE_BASIC->value) {
+        if (
+            $user->role !== RoleUserEnum::ROLE_SECRETARY->value
+        ) {
             abort(Response::HTTP_FORBIDDEN);
         }
         return $next($request);
