@@ -64,10 +64,6 @@
                                     {{ __("Profile") }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('.qz')">
-                                    Quiz
-                                </x-dropdown-link>
-
                                 @if(isAdmin(Auth::user()->role))
                                 <x-dropdown-link :href="route('dashboard')">
                                     {{ __("Dashboard") }}

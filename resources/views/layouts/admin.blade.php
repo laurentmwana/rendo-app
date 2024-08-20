@@ -25,27 +25,18 @@
                 </a>
                 <nav class="flex items-center gap-4 text-sm lg:gap-6">
                     <x-nav-link href="{{ route('dashboard') }}" indexer="dashboard">Tableau de bord</x-nav-link>
-                    <x-nav-link href="{{ route('~category.index') }}" indexer="admin/category">
-                        Categorie
+
+
+                    <x-nav-link href="{{ route('~hourly.index') }}" indexer="admin/hourly">
+                        Horaire
                     </x-nav-link>
-                    <x-nav-link href="{{ route('~formation.index') }}" indexer="admin/formation">
-                        Formation
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('~service.index') }}" indexer="admin/service">
-                        Service
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('~event.index') }}" indexer="admin/event">
-                        Event
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('~payment.index') }}" indexer="admin/payment">
-                        Payment
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('~qz.index') }}" indexer="admin/qz">
-                        Quiz
-                    </x-nav-link>
+
                     <x-nav-link href="{{ route('~user.index') }}" indexer="admin/user">
                         Utilisateur
                     </x-nav-link>
+
+
+
                 </nav>
             </div>
             <button

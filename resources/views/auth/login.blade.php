@@ -49,10 +49,4 @@
             </div>
         </form>
     </x-card>
-
-    <x-card>
-        <p class="text-sm text-muted-foreground">
-            Nouveau sur Smarter Company ? <a href="{{route('register')}}" class="underline">Créez un compte.</a>
-        </p>
-    </x-card>
 </x-guest-layout>
