@@ -44,7 +44,7 @@ class AdminGradeController extends Controller
 
     public function edit(Grade $grade): View
     {
-        return view('admin.grade.create', [
+        return view('admin.grade.edit', [
             'grade' => $grade
         ]);
     }

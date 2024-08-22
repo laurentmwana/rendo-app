@@ -1,4 +1,4 @@
-<form class="space-y-4" action="{{ route('~hourly.update', $hourly) }}" method="post">
+<form class="space-y-5" action="{{ route('~hourly.update', $hourly) }}" method="post">
 
     @method('PUT')
 

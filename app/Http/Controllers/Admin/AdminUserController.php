@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\RoleUserEnum;
 use App\Models\User;
 use App\Search\SearchBar;
 use Illuminate\Contracts\View\View;
@@ -15,13 +16,13 @@ class AdminUserController extends Controller
     public function index(SearchBar $searchBar): View
     {
         return view('admin.user.index', [
-            'users' => $searchBar->user(),
+            'users' => $searchBar->userSecretary(),
         ]);
     }
 
     public function create(): View
     {
-        return view('admin.user.index', [
+        return view('admin.user.new', [
             'user' => new User(),
         ]);
     }
@@ -31,6 +32,7 @@ class AdminUserController extends Controller
         User::create([
             ...$request->validated(),
             'password' => Hash::make($request->validated('password')),
+            'role' => RoleUserEnum::ROLE_SECRETARY->value
         ]);
 
         return redirect()->route('~user.index')

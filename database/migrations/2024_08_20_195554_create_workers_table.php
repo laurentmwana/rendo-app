@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('phone')->unique();
             $table->date('happy');
+            $table->char('sex', 1);
             $table->string('registration_number')->unique();
             $table->foreignIdFor(Grade::class)
                 ->constrained()

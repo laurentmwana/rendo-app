@@ -42,10 +42,6 @@
                         Travailleur
                     </x-nav-link>
 
-                    <x-nav-link href="">
-                        Demande de visite
-                    </x-nav-link>
-
                     <x-nav-link href="{{ route('~user.index') }}" indexer="admin/user">
                         Utilisateur
                     </x-nav-link>

@@ -1,4 +1,4 @@
-<form class="space-y-4" action="{{ $worker->id ? route('~worker.update', $worker) : route('~worker.store') }}"
+<form class="space-y-5" action="{{ $worker->id ? route('~worker.update', $worker) : route('~worker.store') }}"
     method="post">
 
     @if ($worker->id)
@@ -20,9 +20,9 @@
     </div>
 
     <div>
-        <x-input-label for="name">Prénom</x-input-label>
-        <x-text-input value="{{ old('name', $worker->name) }}" id="name" name="name" />
-        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <x-input-label for="lastname">Prénom</x-input-label>
+        <x-text-input value="{{ old('lastname', $worker->lastname) }}" id="lastname" name="lastname" />
+        <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
     </div>
 
     <div>
@@ -44,6 +44,14 @@
             placeholder="Grades" />
         <x-input-error :messages="$errors->get('grade_id')" class="mt-2" />
     </div>
+
+
+    <div>
+        <x-input-label for="happy">Date de naissance</x-input-label>
+        <x-text-input type="date" value="{{ old('happy', $worker->happy) }}" id="happy" name="happy" />
+        <x-input-error :messages="$errors->get('happy')" class="mt-2" />
+    </div>
+
 
 
     <x-primary-button>

@@ -1,14 +1,14 @@
-<x-admin-layout title="Gestion des secretaries">
+<x-admin-layout title="Gestion d'utilisateur">
     <x-container class="py-12">
         <x-header-page :admin="true" class="mb-4">
             <x-slot name="title" class="text-base">
-                Gestion des secretaries
+                Gestion d'utilisateur
             </x-slot>
         </x-header-page>
 
 
         @include('shared.searchable', [
-        'routeCreate' => route('~secretary.create')
+        'routeCreate' => route('~user.create')
         ])
 
         <table class="mb-4 w-full caption-bottom text-sm responsive-table">
@@ -20,12 +20,17 @@
                     </th>
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        Postnom
+                        Email
                     </th>
 
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        Matricule
+                        Sécretaire
+                    </th>
+
+                    <th
+                        class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                        Adresse vérifie
                     </th>
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
@@ -39,36 +44,39 @@
             </thead>
 
             <tbody class="[&_tr:last-child]:border-0">
-                @foreach ($secretaries as $secretary)
+                @foreach ($users as $user)
                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        <a href="{{ route('~secretary.show', $secretary) }}" class="hover:underline">
-                            {{ $secretary->name }}
+                        <a href="{{ route('~user.show', $user) }}" class="hover:underline">
+                            {{ $user->name }}
+                        </a>
+                    </td>
+                    <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                        <a href="{{ route('~user.show', $user) }}" class="hover:underline">
+                            {{ $user->email }}
                         </a>
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        <a href="{{ route('~secretary.show', $secretary) }}" class="hover:underline">
-                            {{ $secretary->registration_number }}
+                        <a href="{{ route('~secretary.show', $user->secretary) }}" class="hover:underline">
+                            {{ $user->secretary->name }}
                         </a>
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        <a href="{{ route('~secretary.show', $secretary) }}" class="hover:underline">
-                            {{ $secretary->phone }}
-                        </a>
+                        @include('shared.badge', [
+                        'active' => $user->email_verified_at !== null
+                        ])
                     </td>
 
-
-
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        @include('shared.ago', ['now' => $secretary->created_at])
+                        @include('shared.ago', ['now' => $user->created_at])
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                         @include('shared.action', [
-                        'routeDestroy' => route('~secretary.destroy', $secretary),
-                        'routeEdit' => route('~secretary.edit', $secretary),
+                        'routeDestroy' => route('~user.destroy', $user),
+                        'routeEdit' => route('~user.edit', $user),
                         ])
                     </td>
                 </tr>
@@ -77,7 +85,7 @@
         </table>
 
         <div>
-            {{ $secretaries->links() }}
+            {{ $users->links() }}
         </div>
 
     </x-container>

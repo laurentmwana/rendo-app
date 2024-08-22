@@ -1,4 +1,4 @@
-<form class="space-y-4"
+<form class="space-y-5"
     action="{{ $secretary->id ? route('~secretary.update', $secretary) : route('~secretary.store') }}" method="post">
 
     @if ($secretary->id)
@@ -27,9 +27,9 @@
 
 
     <div>
-        <x-input-label for="name">Prénom</x-input-label>
-        <x-text-input value="{{ old('name', $secretary->name) }}" id="name" name="name" />
-        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <x-input-label for="happy">Date de naissance</x-input-label>
+        <x-text-input type="date" value="{{ old('happy', $secretary->happy) }}" id="happy" name="happy" />
+        <x-input-error :messages="$errors->get('happy')" class="mt-2" />
     </div>
 
     <div>

@@ -46,7 +46,7 @@ class AdminWorkerController extends Controller
 
     public function edit(Worker $worker): View
     {
-        return view('admin.worker.create', [
+        return view('admin.worker.edit', [
             'worker' => $worker
         ]);
     }

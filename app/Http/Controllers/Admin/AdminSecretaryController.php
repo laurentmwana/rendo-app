@@ -31,7 +31,7 @@ class AdminSecretaryController extends Controller
         Secretary::create($request->validated());
 
         return redirect()
-            ->route('~secretar.index')
+            ->route('~secretary.index')
             ->with('success', 'secretaire ajouté');
     }
 
@@ -45,7 +45,7 @@ class AdminSecretaryController extends Controller
 
     public function edit(Secretary $secretary): View
     {
-        return view('admin.secretary.create', [
+        return view('admin.secretary.edit', [
             'secretary' => $secretary
         ]);
     }
@@ -55,7 +55,7 @@ class AdminSecretaryController extends Controller
         $secretary->update($request->validated());
 
         return redirect()
-            ->route('~secretar.index')
+            ->route('~secretary.index')
             ->with('success', 'secretaire edité');
     }
 
@@ -64,7 +64,7 @@ class AdminSecretaryController extends Controller
         $secretary->delete();
 
         return redirect()
-            ->route('~secretar.index')
+            ->route('~secretary.index')
             ->with('success', 'secretaire supprimé');
     }
 }

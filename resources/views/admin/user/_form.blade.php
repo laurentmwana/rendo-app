@@ -19,10 +19,18 @@
     </div>
 
     <div>
+        <x-input-label for="secretary_id">Sécretaire</x-input-label>
+        <x-select :items="getSecretary()" value="{{ old('secretary_id', $user->secretary_id) }}" id="secretary_id"
+            name="secretary_id" placeholder="Sécretaire" />
+        <x-input-error :messages="$errors->get('secretary_id')" class="mt-2" />
+    </div>
+
+    <div>
         <x-input-label for="password">Mot de passe</x-input-label>
         <x-text-input id="password" name="password" />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
+
 
     <x-primary-button>
         <i class="bi bi-pen"></i>

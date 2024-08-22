@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Admin;
 
 use App\Generator\Token;
+use App\Rules\InSexRule;
 use App\Models\Secretary;
+use App\Rules\BetweenDateHappyRule;
 use Illuminate\Validation\Rules\Unique;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -42,7 +44,8 @@ class SecretaryRequest extends FormRequest
             ],
             'happy' => [
                 'required',
-                'date'
+                'date',
+                (new BetweenDateHappyRule())
             ],
             'phone' => [
                 'required',
@@ -54,13 +57,14 @@ class SecretaryRequest extends FormRequest
             ],
             'sex' => [
                 'required',
+                (new InSexRule())
             ],
         ];
     }
 
     public function prepareForValidation()
     {
-        $this->merger([
+        $this->merge([
             'registration_number' => Token::alpha(8),
         ]);
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Admin;
 
 use App\Models\Worker;
+use App\Rules\InSexRule;
 use App\Generator\Token;
+use App\Rules\BetweenDateHappyRule;
 use Illuminate\Validation\Rules\Unique;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -42,7 +44,8 @@ class WorkerRequest extends FormRequest
             ],
             'happy' => [
                 'required',
-                'date'
+                'date',
+                (new BetweenDateHappyRule())
             ],
             'phone' => [
                 'required',
@@ -54,6 +57,7 @@ class WorkerRequest extends FormRequest
             ],
             'sex' => [
                 'required',
+                (new InSexRule())
             ],
 
             'grade_id' => [
@@ -65,7 +69,7 @@ class WorkerRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        $this->merger([
+        $this->merge([
             'registration_number' => Token::alpha(8),
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Search;
 
+use App\Enums\RoleUserEnum;
 use App\Models\Qz;
 use App\Models\User;
 use App\Models\Event;
@@ -12,6 +13,7 @@ use App\Models\Service;
 use App\Models\Category;
 use App\Models\Formation;
 use App\Models\Secretary;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -20,18 +22,38 @@ class SearchBar
     public function __construct(private Request $request) {}
 
 
-    public function user(): LengthAwarePaginator
+    public function userSecretary(): LengthAwarePaginator
     {
         $query = $this->request->query->get('q');
 
         return $query === null
-            ? User::orderByDesc('updated_at')
+            ? User::with(['secretary'])
+            ->orderByDesc('updated_at')
+            ->where('role', '=', RoleUserEnum::ROLE_SECRETARY->value)
             ->paginate()
-            : User::orderByDesc('updated_at')
+            : User::with(['secretary'])
+            ->orderByDesc('updated_at')
+            ->where('role', '=', RoleUserEnum::ROLE_SECRETARY->value)
             ->where('name', 'like', "%$query%")
-            ->orWhere('role', 'like', "%$query%")
             ->orWhere('email', 'like', "%$query%")
-            ->orWhere('phone', 'like', "%$query%")
+            ->orWhere('created_at', 'like', "%$query%")
+            ->paginate();
+    }
+
+    public function userVisitor(): LengthAwarePaginator
+    {
+        $query = $this->request->query->get('q');
+
+        return $query === null
+            ? User::with(['visitor'])
+            ->orderByDesc('updated_at')
+            ->where('role', '=', RoleUserEnum::ROLE_VISITOR->value)
+            ->paginate()
+            : User::with(['visitor'])
+            ->orderByDesc('updated_at')
+            ->where('role', '=', RoleUserEnum::ROLE_VISITOR->value)
+            ->where('name', 'like', "%$query%")
+            ->orWhere('email', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
             ->paginate();
     }
@@ -89,9 +111,11 @@ class SearchBar
         $query = $this->request->query->get('q');
 
         return $query === null
-            ? Secretary::orderByDesc('updated_at')
+            ? Worker::with(['grade'])
+            ->orderByDesc('updated_at')
             ->paginate()
-            : Secretary::orderByDesc('updated_at')
+            : Worker::with(['grade'])
+            ->orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('firstname', 'like', "%$query%")
             ->orWhere('sex', 'like', "%$query%")

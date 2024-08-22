@@ -2,23 +2,21 @@
     <div class="flex items-start justify-center gap-4">
         <x-card class="w-[260px] shadow-sm bg-inherit max-sm:w-[80%]">
             <p class="text-sm text-muted-foreground">
-                Stimuler l'innovation, la croissance
-                économique et la création d'emplois.
+                Simplicité d’utilisation : Une plateforme conçue pour être accessible à tous, sans compromis sur les
+                fonctionnalités.
             </p>
         </x-card>
         <x-card class="w-[260px] shadow-sm bg-inherit max-sm:w-[80%] border-slate-200">
             <p class="text-sm text-muted-foreground">
-                fournir les connaissances, les outils et
-                le soutien nécessaires pour aider les
-                entrepreneurs à réussir dans un
-                environnement competitif
+                Gain de temps : Libérez-vous des tâches administratives répétitives et concentrez-vous sur ce que vous
+                faites de mieux.
             </p>
         </x-card>
 
         <x-card class="w-[260px] shadow-sm bg-inherit max-sm:w-[80%]">
             <p class="text-sm text-muted-foreground">
-                Favoriser un écosystème entrepreneuriat
-                dynamique et prospère.
+                Service client dédié : Nous sommes là pour vous accompagner à chaque étape, avec un support réactif et
+                personnalisé.
             </p>
         </x-card>
     </div>
