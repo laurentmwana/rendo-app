@@ -20,17 +20,18 @@
         class="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div class="max-w-7xl mx-auto flex h-14 items-center">
             <div class="mr-4 hidden md:flex">
-                <a class="mr-4 flex items-center space-x-2 lg:mr-6" href="/">
+                <a class="mr-4 flex items-center space-x-2 lg:mr-6" href="{{ route('&dashboard') }}">
                     @include('shared.logo')
                 </a>
                 <nav class="flex items-center gap-4 text-sm lg:gap-6">
-                    <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">Accueil
+                    <x-nav-link href="{{ route('dashboard') }}" indexer="dashboard">Tableau de bord</x-nav-link>
+
+                    <x-nav-link href="{{ route('&hourly.index') }}" indexer="secretary/hourly">
+                        Horaire
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('.about') }}" :active="request()->routeIs('.about')">A propos
-                    </x-nav-link>
-
-                    <x-nav-link href="{{ route('.contact') }}" :active="request()->routeIs('.contact')">Contact
+                    <x-nav-link href="{{ route('&requester.index') }}" indexer="secretary/requester">
+                        Demandeur
                     </x-nav-link>
                 </nav>
             </div>
@@ -50,54 +51,44 @@
             </button>
             <div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
                 <nav class="flex items-center">
-                    @auth
+                    <nav class="flex items-center">
+                        @auth
 
-                    <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                @include('shared.avatar', ['name' =>
-                                Auth::user()->name])
-                            </x-slot>
+                        <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    @include('shared.avatar', ['name' =>
+                                    Auth::user()->name])
+                                </x-slot>
 
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __("Profile") }}
-                                </x-dropdown-link>
-
-                                @if(isAdmin(Auth::user()->role))
-                                <x-dropdown-link :href="route('dashboard')">
-                                    {{ __("Dashboard") }}
-                                </x-dropdown-link>
-                                @endif
-
-                                @if(isSecretary(Auth::user()->role))
-                                <x-dropdown-link :href="route('&dashboard')">
-                                    {{ __("Dashboard") }}
-                                </x-dropdown-link>
-                                @endif
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
-                                        {{ __("Log Out") }}
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __("Profile") }}
                                     </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
-                    </div>
-                    @endauth @guest
-                    <x-button-link variant="secondary" href="{{ route('login') }}">
-                        <i class="bi bi-user"></i> Se Connecter
-                    </x-button-link>
-                    @endguest
+
+                                    <x-dropdown-link :href="route('welcome')">
+                                        Voir le site
+                                    </x-dropdown-link>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                            {{ __("Log Out") }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
+                        @endauth
+                    </nav>
                 </nav>
             </div>
         </div>
     </header>
-    <main class="pb-12">
+    <main id="sh">
         {{ $slot }}
     </main>
 </body>

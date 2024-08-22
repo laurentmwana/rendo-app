@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Formation;
+use App\Models\Requester;
 use App\Models\Secretary;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -115,6 +116,25 @@ class SearchBar
             ->orderByDesc('updated_at')
             ->paginate()
             : Worker::with(['grade'])
+            ->orderByDesc('updated_at')
+            ->where('name', 'like', "%$query%")
+            ->orWhere('firstname', 'like', "%$query%")
+            ->orWhere('sex', 'like', "%$query%")
+            ->orWhere('phone', 'like', "%$query%")
+            ->orWhere('created_at', 'like', "%$query%")
+            ->paginate();
+    }
+
+
+    public function requester(): LengthAwarePaginator
+    {
+        $query = $this->request->query->get('q');
+
+        return $query === null
+            ? Requester::with(['user'])
+            ->orderByDesc('updated_at')
+            ->paginate()
+            : Requester::with(['user'])
             ->orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('firstname', 'like', "%$query%")

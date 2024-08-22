@@ -19,7 +19,7 @@
                 </div>
             </x-card>
 
-            @if (!(isAdmin(Auth::user()->role)))
+            @if ((isVisitor(Auth::user()->role)))
             <x-card class="bg-inherit">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
