@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Secretary;
 
 use App\Models\User;
 use App\Models\Secretary;
@@ -43,9 +43,9 @@ class UserRequest extends FormRequest
                 'required',
                 Rules\Password::defaults()
             ],
-            'secretary_id' => [
+            'requester_id' => [
                 'required',
-                'exists:secretaries,id',
+                'exists:requesters,id',
                 (new Unique(User::class))->ignore($id)
             ]
         ];

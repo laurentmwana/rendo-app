@@ -2,19 +2,20 @@
 
 namespace App\Search;
 
-use App\Enums\RoleUserEnum;
 use App\Models\Qz;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Grade;
 use App\Models\Hourly;
+use App\Models\Worker;
 use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Formation;
 use App\Models\Requester;
 use App\Models\Secretary;
-use App\Models\Worker;
+use App\Enums\RoleUserEnum;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -41,18 +42,18 @@ class SearchBar
             ->paginate();
     }
 
-    public function userVisitor(): LengthAwarePaginator
+    public function userRequester(): LengthAwarePaginator
     {
         $query = $this->request->query->get('q');
 
         return $query === null
-            ? User::with(['visitor'])
+            ? User::with(['requester'])
             ->orderByDesc('updated_at')
-            ->where('role', '=', RoleUserEnum::ROLE_VISITOR->value)
+            ->where('role', '=', RoleUserEnum::ROLE_REQUESTER->value)
             ->paginate()
-            : User::with(['visitor'])
+            : User::with(['requester'])
             ->orderByDesc('updated_at')
-            ->where('role', '=', RoleUserEnum::ROLE_VISITOR->value)
+            ->where('role', '=', RoleUserEnum::ROLE_REQUESTER->value)
             ->where('name', 'like', "%$query%")
             ->orWhere('email', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
@@ -141,6 +142,21 @@ class SearchBar
             ->orWhere('sex', 'like', "%$query%")
             ->orWhere('phone', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
+            ->paginate();
+    }
+
+    public function appointment(): LengthAwarePaginator
+    {
+        $query = $this->request->query->get('q');
+
+        return $query === null
+            ? Appointment::with(['requester', 'secretary', 'hourly', 'worker'])
+            ->orderByDesc('updated_at')
+            ->paginate()
+            : Appointment::with(['requester', 'secretary', 'hourly', 'worker'])
+            ->orderByDesc('updated_at')
+            ->where('name', 'like', "%$query%")
+            ->orWhere('approved', 'like', "%$query%")
             ->paginate();
     }
 }

@@ -17,7 +17,12 @@ class RequesterFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'firstname' => $this->faker->firstname,
+            'lastname' => $this->faker->lastname,
+            'sex' => $this->faker->randomElement(array_keys(getSexies())),
+            'phone' => $this->faker->phoneNumber,
+            'happy' => $this->faker->dateTimeInInterval(),
         ];
     }
 }

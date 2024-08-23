@@ -2,15 +2,15 @@
 
 namespace App\Events;
 
-use App\Models\Contact;
+use App\Models\Appointment;
 use Illuminate\Queue\SerializesModels;
 
-class SendMessageContactEvent
+class SendMessageAppointmentEvent
 {
     use SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public Contact $contact) {}
+    public function __construct(public Appointment $appointment) {}
 }

@@ -29,9 +29,6 @@
 
                     <x-nav-link href="{{ route('.about') }}" :active="request()->routeIs('.about')">A propos
                     </x-nav-link>
-
-                    <x-nav-link href="{{ route('.contact') }}" :active="request()->routeIs('.contact')">Contact
-                    </x-nav-link>
                 </nav>
             </div>
             <button

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Generator\Token;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class SecretaryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'firstname' => $this->faker->firstname,
+            'lastname' => $this->faker->lastname,
+            'sex' => $this->faker->randomElement(array_keys(getSexies())),
+            'phone' => $this->faker->phoneNumber,
+            'registration_number' => Token::alpha(8),
+            'happy' => $this->faker->dateTimeInInterval(),
         ];
     }
 }

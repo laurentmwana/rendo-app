@@ -24,7 +24,7 @@
                     @include('shared.logo')
                 </a>
                 <nav class="flex items-center gap-4 text-sm lg:gap-6">
-                    <x-nav-link href="{{ route('dashboard') }}" indexer="dashboard">Tableau de bord</x-nav-link>
+                    <x-nav-link href="{{ route('&dashboard') }}" indexer="dashboard">Tableau de bord</x-nav-link>
 
                     <x-nav-link href="{{ route('&hourly.index') }}" indexer="secretary/hourly">
                         Horaire
@@ -32,6 +32,14 @@
 
                     <x-nav-link href="{{ route('&requester.index') }}" indexer="secretary/requester">
                         Demandeur
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('&appointment.index') }}" indexer="secretary/appointment">
+                        Rendez-vous
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('&user.index') }}" indexer="secretary/user">
+                        Utilisateur
                     </x-nav-link>
                 </nav>
             </div>

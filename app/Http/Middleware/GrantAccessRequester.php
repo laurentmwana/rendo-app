@@ -7,7 +7,7 @@ use App\Enums\RoleUserEnum;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GrantAccessVisitor
+class GrantAccessRequester
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class GrantAccessVisitor
         $user = $request->user();
 
         if (
-            $user->role !== RoleUserEnum::ROLE_VISITOR->value
+            $user->role !== RoleUserEnum::ROLE_REQUESTER->value
         ) {
             abort(Response::HTTP_FORBIDDEN);
         }

@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'password',
         'role',
-        'secretary_id'
+        'secretary_id',
+        'requester_id',
     ];
 
     /**
@@ -52,5 +53,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function secretary(): BelongsTo
     {
         return $this->belongsTo(Secretary::class);
+    }
+
+    public function requester(): BelongsTo
+    {
+        return $this->belongsTo(Requester::class);
     }
 }

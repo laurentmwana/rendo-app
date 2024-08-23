@@ -1,8 +1,11 @@
 <?php
 
 use App\Models\Grade;
-use App\Enums\RoleUserEnum;
+use App\Models\Hourly;
+use App\Models\Worker;
+use App\Models\Requester;
 use App\Models\Secretary;
+use App\Enums\RoleUserEnum;
 use Illuminate\Support\Collection as SupportCollection;
 
 
@@ -40,7 +43,7 @@ function isSecretary(string $role): bool
 
 function isVisitor(string $role): bool
 {
-    return $role === RoleUserEnum::ROLE_VISITOR->value;
+    return $role === RoleUserEnum::ROLE_REQUESTER->value;
 }
 
 
@@ -59,8 +62,59 @@ function getGrades(): SupportCollection
 }
 
 
-function getSecretary(): SupportCollection
+function getSecretary(): array
 {
-    return Secretary::orderByDesc('updated_at')
-        ->pluck('name', 'id');
+    $secretaries = Secretary::all(['name', 'firstname', 'id']);
+
+    $secretaryData = [];
+
+    foreach ($secretaries as $secretary) {
+        $value = "{$secretary->name} {$secretary->firstname}";
+        $secretaryData[$secretary->id] = $value;
+    }
+
+    return $secretaryData;
+}
+
+function getRequester(): array
+{
+    $requesters = Requester::all(['name', 'firstname', 'id']);
+
+    $requesterData = [];
+
+    foreach ($requesters as $requester) {
+        $value = "{$requester->name} {$requester->firstname}";
+        $requesterData[$requester->id] = $value;
+    }
+
+    return $requesterData;
+}
+
+function getWorker(): array
+{
+    $workers = Worker::with(['grade'])->get();
+
+    $workersData = [];
+
+    foreach ($workers as $worker) {
+        $value = "{$worker->name} {$worker->firstname} | {$worker->grade->name}";
+        $workersData[$worker->id] = $value;
+    }
+
+    return $workersData;
+}
+
+function getHourly(): array
+{
+    $hourlies = Hourly::where('lock', '=', 1)
+        ->get(['start', 'end', 'id', 'day']);
+
+    $hourliesData = [];
+
+    foreach ($hourlies as $hourly) {
+        $value = "{$hourly->day} :  {$hourly->start} à {$hourly->end}";
+        $hourliesData[$hourly->id] = $value;
+    }
+
+    return $hourliesData;
 }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Grade>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Approved>
  */
-class GradeFactory extends Factory
+class ApprovedFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,6 +16,8 @@ class GradeFactory extends Factory
      */
     public function definition(): array
     {
-        return [];
+        return [
+            //
+        ];
     }
 }
