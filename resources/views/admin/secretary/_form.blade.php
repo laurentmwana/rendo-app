@@ -40,10 +40,10 @@
 
 
     <div>
-        <x-input-label for="sex">Genre</x-input-label>
-        <x-select :items="getSexies()" value="{{ old('sex', $secretary->sex) }}" id="sex" name="sex"
+        <x-input-label for="gender">Genre</x-input-label>
+        <x-select :items="getSexies()" value="{{ old('gender', $secretary->gender) }}" id="gender" name="gender"
             placeholder="Genre" />
-        <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
     </div>
 
 

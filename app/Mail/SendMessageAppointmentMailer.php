@@ -26,7 +26,7 @@ class SendMessageAppointmentMailer extends Mailable
     {
         return new Envelope(
             subject: 'Send Message Appointment Mailer',
-            to: $this->appointment->requester->user->email,
+            to: $this->appointment->requester->email,
             cc: env('MAIL_FROM_ADDRESS')
         );
     }
@@ -37,7 +37,7 @@ class SendMessageAppointmentMailer extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: $this->appointment->approved ? 'mail.approved-appointment' : 'mail.no-approved-appointment',
+            markdown: 'mail.approved-appointment',
         );
     }
 

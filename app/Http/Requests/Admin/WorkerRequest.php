@@ -55,7 +55,7 @@ class WorkerRequest extends FormRequest
                 'required',
                 (new Unique(Worker::class))->ignore($id)
             ],
-            'sex' => [
+            'gender' => [
                 'required',
                 (new InSexRule())
             ],

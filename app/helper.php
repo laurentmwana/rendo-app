@@ -41,11 +41,6 @@ function isSecretary(string $role): bool
     return $role === RoleUserEnum::ROLE_SECRETARY->value;
 }
 
-function isVisitor(string $role): bool
-{
-    return $role === RoleUserEnum::ROLE_REQUESTER->value;
-}
-
 
 function getSexies(): array
 {
@@ -53,6 +48,16 @@ function getSexies(): array
         'M' => 'Homme',
         'F' => 'Femme',
     ];
+}
+
+function getAges(int $start = 18, int $end = 70): array
+{
+    $ages = [];
+    $year = (int)date('Y');
+    for ($index = $start; $index <= $end; $index++) {
+        $ages[($year - $index)] = "$index ans";
+    }
+    return $ages;
 }
 
 function getGrades(): SupportCollection

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Appointment extends Model
 {
@@ -12,23 +13,14 @@ class Appointment extends Model
 
     protected $fillable = [
         'secretary_id',
-        'hourly_id',
         'requester_id',
         'worker_id',
-        'time',
         'reason',
-        'send_message_approved',
-        'approved'
     ];
 
     public function secretary(): BelongsTo
     {
         return $this->belongsTo(Secretary::class);
-    }
-
-    public function hourly(): BelongsTo
-    {
-        return $this->belongsTo(Hourly::class);
     }
 
     public function requester(): BelongsTo
@@ -39,5 +31,10 @@ class Appointment extends Model
     public function worker(): BelongsTo
     {
         return $this->belongsTo(Worker::class);
+    }
+
+    public function approved(): HasOne
+    {
+        return $this->hasOne(Approved::class);
     }
 }

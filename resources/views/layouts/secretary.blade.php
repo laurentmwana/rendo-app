@@ -35,12 +35,9 @@
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('&appointment.index') }}" indexer="secretary/appointment">
-                        Rendez-vous
+                        Réservation
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('&user.index') }}" indexer="secretary/user">
-                        Utilisateur
-                    </x-nav-link>
                 </nav>
             </div>
             <button

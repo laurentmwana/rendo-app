@@ -55,7 +55,7 @@ class SecretaryRequest extends FormRequest
                 'required',
                 (new Unique(Secretary::class))->ignore($id)
             ],
-            'sex' => [
+            'gender' => [
                 'required',
                 (new InSexRule())
             ],

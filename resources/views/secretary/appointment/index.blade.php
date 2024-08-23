@@ -24,16 +24,6 @@
 
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        Horaire
-                    </th>
-
-                    <th
-                        class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        Heure
-                    </th>
-
-                    <th
-                        class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
                         Approuvé
                     </th>
 
@@ -59,22 +49,16 @@
                         </a>
                     </td>
 
-
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        <a href="{{ route('&hourly.show', $appointment->hourly) }}" class="hover:underline">
-                            {{ $appointment->hourly->day }} {{ $appointment->hourly->start }} - {{
-                            $appointment->hourly->start }}
-                        </a>
-                    </td>
-
-                    <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        {{ $appointment->time }}
-                    </td>
-
-                    <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
+                        @if ($appointment->approved !== null)
+                        <x-badge>
+                            Approuvé
+                        </x-badge>
+                        @else
                         @include('secretary.appointment.approved', [
                         'appointment' => $appointment
                         ])
+                        @endif
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('approveds', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Appointment::class)
-                ->nullable()
+                ->unique()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
@@ -24,6 +24,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->datetime('for_date');
             $table->timestamps();
         });
     }

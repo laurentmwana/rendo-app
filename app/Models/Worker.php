@@ -19,7 +19,7 @@ class Worker extends Model
         'registration_number',
         'grade_id',
         'happy',
-        'sex',
+        'gender',
     ];
 
     public function grade(): BelongsTo

@@ -23,18 +23,6 @@
     </div>
 
     <div>
-        <x-input-label for="hourly_id">Horaire</x-input-label>
-        <x-select :items="getHourly()" value="{{ old('hourly_id', $appointment->hourly_id) }}" id="hourly_id"
-            name="hourly_id" placeholder="Horaire" />
-        <x-input-error :messages="$errors->get('hourly_id')" class="mt-2" />
-    </div>
-    <div>
-        <x-input-label for="time">Heure</x-input-label>
-        <x-text-input type="time" value="{{ old('time', $appointment->time) }}" id="time" name="time" />
-        <x-input-error :messages="$errors->get('time')" class="mt-2" />
-    </div>
-
-    <div>
         <x-input-label for="reason">Raison de son rendez-vous</x-input-label>
         <x-textarea value="{{ old('reason', $appointment->reason) }}" id="reason" name="reason" />
         <x-input-error :messages="$errors->get('reason')" class="mt-2" />

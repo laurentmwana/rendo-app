@@ -52,7 +52,16 @@ class RequesterRequest extends FormRequest
                 'required',
                 (new Unique(Requester::class))->ignore($id)
             ],
-            'sex' => [
+            'email' => [
+                'required',
+                'email',
+                (new Unique(Requester::class))->ignore($id)
+            ],
+            'registration_number' => [
+                'required',
+                (new Unique(Requester::class))->ignore($id)
+            ],
+            'gender' => [
                 'required',
                 (new InSexRule())
             ],

@@ -21,7 +21,7 @@ class SecretaryFactory extends Factory
             'name' => $this->faker->name,
             'firstname' => $this->faker->firstname,
             'lastname' => $this->faker->lastname,
-            'sex' => $this->faker->randomElement(array_keys(getSexies())),
+            'gender' => $this->faker->randomElement(array_keys(getSexies())),
             'phone' => $this->faker->phoneNumber,
             'registration_number' => Token::alpha(8),
             'happy' => $this->faker->dateTimeInInterval(),

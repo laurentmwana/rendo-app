@@ -24,7 +24,7 @@ class SearchBar
     public function __construct(private Request $request) {}
 
 
-    public function userSecretary(): LengthAwarePaginator
+    public function user(): LengthAwarePaginator
     {
         $query = $this->request->query->get('q');
 
@@ -41,25 +41,6 @@ class SearchBar
             ->orWhere('created_at', 'like', "%$query%")
             ->paginate();
     }
-
-    public function userRequester(): LengthAwarePaginator
-    {
-        $query = $this->request->query->get('q');
-
-        return $query === null
-            ? User::with(['requester'])
-            ->orderByDesc('updated_at')
-            ->where('role', '=', RoleUserEnum::ROLE_REQUESTER->value)
-            ->paginate()
-            : User::with(['requester'])
-            ->orderByDesc('updated_at')
-            ->where('role', '=', RoleUserEnum::ROLE_REQUESTER->value)
-            ->where('name', 'like', "%$query%")
-            ->orWhere('email', 'like', "%$query%")
-            ->orWhere('created_at', 'like', "%$query%")
-            ->paginate();
-    }
-
 
     public function hourly(): LengthAwarePaginator
     {
@@ -88,7 +69,7 @@ class SearchBar
             : Secretary::orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('firstname', 'like', "%$query%")
-            ->orWhere('sex', 'like', "%$query%")
+            ->orWhere('gender', 'like', "%$query%")
             ->orWhere('phone', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
             ->paginate();
@@ -120,7 +101,7 @@ class SearchBar
             ->orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('firstname', 'like', "%$query%")
-            ->orWhere('sex', 'like', "%$query%")
+            ->orWhere('gender', 'like', "%$query%")
             ->orWhere('phone', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
             ->paginate();
@@ -132,14 +113,14 @@ class SearchBar
         $query = $this->request->query->get('q');
 
         return $query === null
-            ? Requester::with(['user'])
+            ? Requester::with(['appointments'])
             ->orderByDesc('updated_at')
             ->paginate()
-            : Requester::with(['user'])
+            : Requester::with(['appointments'])
             ->orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('firstname', 'like', "%$query%")
-            ->orWhere('sex', 'like', "%$query%")
+            ->orWhere('gender', 'like', "%$query%")
             ->orWhere('phone', 'like', "%$query%")
             ->orWhere('created_at', 'like', "%$query%")
             ->paginate();
@@ -150,10 +131,10 @@ class SearchBar
         $query = $this->request->query->get('q');
 
         return $query === null
-            ? Appointment::with(['requester', 'secretary', 'hourly', 'worker'])
+            ? Appointment::with(['requester', 'secretary', 'worker', 'approved'])
             ->orderByDesc('updated_at')
             ->paginate()
-            : Appointment::with(['requester', 'secretary', 'hourly', 'worker'])
+            : Appointment::with(['requester', 'secretary', 'worker', 'approved'])
             ->orderByDesc('updated_at')
             ->where('name', 'like', "%$query%")
             ->orWhere('approved', 'like', "%$query%")

@@ -3,9 +3,12 @@
 namespace App\Http\Requests\Secretary;
 
 use App\Generator\Token;
+use App\Rules\DateTimeRangeRule;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class ApprovedRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +26,13 @@ class AppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'requester_id' => [
+            'secretary_id' => [
                 'required',
-                'exists:requesters,id'
+                'exists:secretaries,id'
             ],
-            'worker_id' => [
+            'for_date' => [
                 'required',
-                'exists:workers,id'
-            ],
-            'reason' => [
-                'required',
-                'between:10,5000'
+                (new DateTimeRangeRule())
             ]
         ];
     }
@@ -41,7 +40,7 @@ class AppointmentRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'registration_number' => Token::alpha(8),
+            'secretary_id' => Auth::user()->secretary_id,
         ]);
     }
 }

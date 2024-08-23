@@ -16,7 +16,7 @@ class AdminUserController extends Controller
     public function index(SearchBar $searchBar): View
     {
         return view('admin.user.index', [
-            'users' => $searchBar->userSecretary(),
+            'users' => $searchBar->user(),
         ]);
     }
 

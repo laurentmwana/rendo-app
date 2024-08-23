@@ -7,7 +7,7 @@ use App\Http\Controllers\Secretary\SecretaryHourlyController;
 use App\Http\Controllers\Secretary\SecretaryWorkerController;
 use App\Http\Controllers\Secretary\SecretaryRequesterController;
 use App\Http\Controllers\Secretary\SecretaryAppointmentController;
-use App\Http\Controllers\Secretary\SecretaryApprovedAppointmentController;
+use App\Http\Controllers\Secretary\SecretaryApprovedController;
 
 Route::prefix('secretary')->middleware(['auth', 'verified', 'secretary'])->name('&')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
@@ -23,11 +23,10 @@ Route::prefix('secretary')->middleware(['auth', 'verified', 'secretary'])->name(
         ->name('worker.show');
 
     Route::resource('requester', SecretaryRequesterController::class);
-    Route::resource('user', SecretaryUserController::class);
     Route::resource('appointment', SecretaryAppointmentController::class);
 
     Route::put(
         'approved/appointment/{id}',
-        SecretaryApprovedAppointmentController::class
+        SecretaryApprovedController::class
     )->name('appointment.approved');
 });

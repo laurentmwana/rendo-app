@@ -20,7 +20,8 @@ class RequesterFactory extends Factory
             'name' => $this->faker->name,
             'firstname' => $this->faker->firstname,
             'lastname' => $this->faker->lastname,
-            'sex' => $this->faker->randomElement(array_keys(getSexies())),
+            'email' => $this->faker->lastname,
+            'gender' => $this->faker->randomElement(array_keys(getSexies())),
             'phone' => $this->faker->phoneNumber,
             'happy' => $this->faker->dateTimeInInterval(),
         ];

@@ -7,9 +7,6 @@ use App\Models\Grade;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Hourly;
 use App\Models\Worker;
-use App\Models\Network;
-use App\Models\Category;
-use App\Models\Formation;
 use App\Models\Requester;
 use App\Models\Secretary;
 use App\Enums\RoleUserEnum;
@@ -31,13 +28,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Hourly::factory()->createMany([
-            ['day' => 'Lundi', 'start' => '08:30', 'end' => '16:30'],
-            ['day' => 'Mardi', 'start' => '08:30', 'end' => '16:30'],
-            ['day' => 'Mercredi', 'start' => '08:30', 'end' => '16:30'],
-            ['day' => 'Jeudi', 'start' => '08:30', 'end' => '16:30'],
-            ['day' => 'Vendredi', 'start' => '08:30', 'end' => '13:30'],
-            ['day' => 'Samedi', 'start' => null, 'end' => null, 'lock' => false],
-            ['day' => 'Dimanche', 'start' => null, 'end' => null, 'lock' => false],
+            ['day' => 'Monday', 'start' => '08:30', 'end' => '16:30'],
+            ['day' => 'Tuesday', 'start' => '08:30', 'end' => '16:30'],
+            ['day' => 'Wednesday', 'start' => '08:30', 'end' => '16:30'],
+            ['day' => 'Thursday', 'start' => '08:30', 'end' => '16:30'],
+            ['day' => 'Friday', 'start' => '08:30', 'end' => '13:30'],
+            ['day' => 'Saturday', 'start' => null, 'end' => null, 'lock' => false],
+            ['day' => 'Sunday', 'start' => null, 'end' => null, 'lock' => false],
         ]);
 
         $grades = [
@@ -62,12 +59,5 @@ class DatabaseSeeder extends Seeder
         }
 
         Worker::factory()->create(['grade_id' => Grade::find(1)->id]);
-
-        Requester::factory(10)->create()->each(function (Requester $requester) {
-            User::factory()->create([
-                'role' => RoleUserEnum::ROLE_REQUESTER->value,
-                'requester_id' => $requester->id
-            ]);
-        });
     }
 }

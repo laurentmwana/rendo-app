@@ -30,15 +30,6 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignIdFor(Hourly::class)
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-            $table->boolean('approved')->default(false);
-            $table->boolean('send_message_approved')
-                ->nullable()
-                ->default(false);
-            $table->time('time');
             $table->text('reason');
             $table->timestamps();
         });

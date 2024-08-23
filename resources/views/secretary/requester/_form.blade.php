@@ -39,10 +39,17 @@
     </div>
 
     <div>
-        <x-input-label for="sex">Genre</x-input-label>
-        <x-select :items="getSexies()" value="{{ old('sex', $requester->sex) }}" id="sex" name="sex"
+        <x-input-label for="email">Adresse e-mail</x-input-label>
+        <x-text-input value="{{ old('email', $requester->email) }}" id="email" name="email" />
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
+
+
+    <div>
+        <x-input-label for="gender">Genre</x-input-label>
+        <x-select :items="getSexies()" value="{{ old('gender', $requester->gender) }}" id="gender" name="gender"
             placeholder="Genre" />
-        <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
     </div>
 
 

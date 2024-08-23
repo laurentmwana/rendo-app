@@ -19,18 +19,11 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname')->nullable();
             $table->string('phone')->unique();
+            $table->string('email')->unique();
+            $table->string('registration_number')->unique();
             $table->date('happy');
-            $table->char('sex', 1);
+            $table->char('gender', 1);
             $table->timestamps();
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Requester::class)
-                ->unique()
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
         });
     }
 
@@ -39,9 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeignIdFor(Requester::class);
-        });
         Schema::dropIfExists('requesters');
     }
 };

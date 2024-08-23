@@ -54,7 +54,9 @@
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">
-                        125
+                        <a href="{{ route('&requester.show', $requester) }}" class="hover:underline">
+                            {{ $requester->appointments->count() }}
+                        </a>
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]">

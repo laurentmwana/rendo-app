@@ -242,7 +242,7 @@ return [
         'rule'                     => 'règle',
         'rules'                    => 'règles',
         'second'                   => 'seconde',
-        'sex'                      => 'sexe',
+        'gender'                      => 'sexe',
         'shipment'                 => 'expédition',
         'short_text'               => 'texte court',
         'size'                     => 'taille',
@@ -271,5 +271,6 @@ return [
         'username'                 => 'nom d\'utilisateur',
         'value'                    => 'valeur',
         'year'                     => 'année',
+        'for_date'                     => 'date et heure du rendez-vous',
     ],
 ];

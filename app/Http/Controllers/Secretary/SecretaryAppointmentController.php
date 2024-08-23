@@ -55,7 +55,11 @@ class SecretaryAppointmentController extends Controller
         AppointmentRequest $request,
         Appointment $appointment
     ): RedirectResponse {
-        $appointment->update($request->validated());
+
+        $appointment->update([
+            ...$request->validated(),
+            'send_message_approved' => 0
+        ]);
 
         return redirect()
             ->route('&appointment.index')

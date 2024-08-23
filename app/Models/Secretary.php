@@ -20,7 +20,7 @@ class Secretary extends Model
         'registration_number',
         'grade_id',
         'happy',
-        'sex',
+        'gender',
     ];
 
     public function user(): HasOne

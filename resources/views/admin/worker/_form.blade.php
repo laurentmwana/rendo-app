@@ -33,9 +33,10 @@
 
 
     <div>
-        <x-input-label for="sex">Genre</x-input-label>
-        <x-select :items="getSexies()" value="{{ old('sex', $worker->sex) }}" id="sex" name="sex" placeholder="Genre" />
-        <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+        <x-input-label for="gender">Genre</x-input-label>
+        <x-select :items="getSexies()" value="{{ old('gender', $worker->gender) }}" id="gender" name="gender"
+            placeholder="Genre" />
+        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
     </div>
 
     <div>
@@ -48,7 +49,8 @@
 
     <div>
         <x-input-label for="happy">Date de naissance</x-input-label>
-        <x-text-input type="date" value="{{ old('happy', $worker->happy) }}" id="happy" name="happy" />
+        <x-select :items="getAges()" value="{{ old('happy', $worker->happy) }}" id="happy" name="happy"
+            placeholder="Quel est son âge" />
         <x-input-error :messages="$errors->get('happy')" class="mt-2" />
     </div>
 
