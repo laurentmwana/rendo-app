@@ -29,6 +29,12 @@
 
                     <x-nav-link href="{{ route('.about') }}" :active="request()->routeIs('.about')">A propos
                     </x-nav-link>
+
+                    @guest
+                    <x-nav-link href="{{ route('.reservation.index') }}" :active="request()->routeIs('.reservation')">
+                        Prendre un rendez-vous
+                    </x-nav-link>
+                    @endguest
                 </nav>
             </div>
             <button

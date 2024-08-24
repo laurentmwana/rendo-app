@@ -37,7 +37,7 @@ class SendMessageAppointmentMailer extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.approved-appointment',
+            view: 'mail.approved-appointment',
         );
     }
 
