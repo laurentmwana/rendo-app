@@ -6,7 +6,7 @@
                 fonctionnalités.
             </p>
         </x-card>
-        <x-card class="w-[260px] shadow-sm bg-inherit max-sm:w-[80%] border-slate-200">
+        <x-card class="w-[260px] shadow-sm bg-inherit max-sm:w-[80%] border-green-200">
             <p class="text-sm text-muted-foreground">
                 Gain de temps : Libérez-vous des tâches administratives répétitives et concentrez-vous sur ce que vous
                 faites de mieux.

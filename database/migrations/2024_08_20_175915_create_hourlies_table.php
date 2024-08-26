@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('day')->unique();
             $table->time('start')->nullable();
             $table->time('end')->nullable();
-            $table->boolean('lock')->default(true);
+            $table->boolean('lock')->default(false);
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 <form action="{{ route('.reservation.store') }}" method="POST">
     @csrf
-    <div class="grid grid-cols-2 gap-x-10 gap-y-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
 
         <div>
             <div class="space-y-5">

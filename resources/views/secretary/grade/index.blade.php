@@ -1,29 +1,23 @@
-<x-secretary-layout title="Horaire">
+<x-secretary-layout title="Travailleurs">
     <x-container class="py-12">
         <x-header-page :admin="true" class="mb-4">
             <x-slot name="title" class="text-base">
-                Horaire
+                Travailleurs
             </x-slot>
         </x-header-page>
 
-        <div class="mb-4">
-            @include('shared.search')
-        </div>
+        @include('shared.search')
 
         <table class="mb-4 w-full caption-bottom text-sm responsive-table">
             <thead class="[&_tr]:border-b">
                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        Jour
+                        Nom
                     </th>
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        Heure
-                    </th>
-                    <th
-                        class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        Statut
+                        Travailleurs
                     </th>
                     <th
                         class="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
@@ -33,41 +27,25 @@
             </thead>
 
             <tbody class="[&_tr:last-child]:border-0">
-                @foreach ($hourlies as $hourly)
+                @foreach ($grades as $grade)
                 <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                    <td
-                        class="p-2 capitalize align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        <a href="{{ route('&hourly.show', $hourly) }}" class="hover:underline">
-                            {{ __($hourly->day) }}
+                    <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
+                        <a href="{{ route('&grade.show', $grade) }}" class="hover:underline">
+                            {{ $grade->name }}
                         </a>
                     </td>
+
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        @if ($hourly->start === null && $hourly->end === null)
-                        -
-                        @else
-                        {{ $hourly->start }} à {{ $hourly->end }}
-                        @endif
+                        {{ $grade->workers->count() }}
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        @if (!$hourly->lock)
-                        <x-badge type="success">
-                            Ouvert
-                        </x-badge>
-                        @else
-                        <x-badge type="destructive">
-                            Fermer
-                        </x-badge>
-                        @endif
+                        @include('shared.ago', ['now' => $grade->created_at])
                     </td>
 
                     <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        @include('shared.ago', ['now' => $hourly->created_at])
-                    </td>
-
-                    <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trangreen-y-[2px]">
-                        <div class="flex justify-end items-center">
-                            <x-button-link href="{{ route('&hourly.show', $hourly) }}">
+                        <div class="flex">
+                            <x-button-link href="{{ route('&grade.show', $grade) }}">
                                 Voir
                             </x-button-link>
                         </div>
@@ -78,7 +56,7 @@
         </table>
 
         <div>
-            {{ $hourlies->links() }}
+            {{ $grades->links() }}
         </div>
 
     </x-container>

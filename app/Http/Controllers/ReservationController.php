@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hourly;
 use App\Models\Requester;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
@@ -11,10 +12,13 @@ use App\Http\Requests\NewReservationRequest;
 
 class ReservationController extends Controller
 {
-
     public function index(): View
     {
-        return view('reservation.index');
+        return view('reservation.index', [
+            'hourlies' => Hourly::orderBy('id')
+                ->limit(7)
+                ->get()
+        ]);
     }
 
     public function create(): View

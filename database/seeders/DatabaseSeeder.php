@@ -33,8 +33,8 @@ class DatabaseSeeder extends Seeder
             ['day' => 'Wednesday', 'start' => '08:30', 'end' => '16:30'],
             ['day' => 'Thursday', 'start' => '08:30', 'end' => '16:30'],
             ['day' => 'Friday', 'start' => '08:30', 'end' => '13:30'],
-            ['day' => 'Saturday', 'start' => null, 'end' => null, 'lock' => false],
-            ['day' => 'Sunday', 'start' => null, 'end' => null, 'lock' => false],
+            ['day' => 'Saturday', 'start' => null, 'end' => null, 'lock' => true],
+            ['day' => 'Sunday', 'start' => null, 'end' => null, 'lock' => true],
         ]);
 
         $grades = [

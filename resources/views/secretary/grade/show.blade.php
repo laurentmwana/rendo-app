@@ -1,10 +1,11 @@
-<x-admin-layout title="En savoir plus sur la grade #{{ $grade->id }}">
+<x-secretary-layout title="En savoir plus sur le grade #{{ $grade->id }}">
     <x-container class="py-12">
         <x-header-page :admin="true" class="mb-4">
             <x-slot name="title" class="text-base">
-                En savoir plus sur la grade #{{ $grade->id }}
+                En savoir plus sur le grade #{{ $grade->id }}
             </x-slot>
         </x-header-page>
+
         <div class="max-w-lg">
             <x-card class="mb-4">
                 <h2 class="text-xl font-semibold text-slate-800">
@@ -19,5 +20,6 @@
                     {{ $grade->description }}
                 </p>
             </x-card>
+        </div>
     </x-container>
-</x-admin-layout>
+</x-secretary-layout>
